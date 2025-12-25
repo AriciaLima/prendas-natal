@@ -7,6 +7,7 @@
     <h2>Lista de Prendas 🎄</h2>
 
     <a href="{{ route('gifts.create') }}">➕ Criar Prenda</a>
+    <a href="{{ route('users.index') }}" style="margin-left: 10px;">👥 Ver Pessoas</a>
 
     <br><br>
 
