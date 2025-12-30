@@ -5,7 +5,190 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@layer base {
+    * {
+        @apply transition-colors duration-200;
+    }
+
+    body {
+        @apply bg-gray-100 text-gray-900;
+    }
+
+    body.dark {
+        @apply bg-[#282a36] text-[#f8f8f2];
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold;
+    }
+
+    body.dark h1,
+    body.dark h2,
+    body.dark h3,
+    body.dark h4,
+    body.dark h5,
+    body.dark h6 {
+        @apply text-[#f8f8f2];
+    }
+
+    a {
+        @apply text-[#bd93f9] hover:text-[#ff79c6] no-underline;
+    }
+}
+
+@layer components {
+    /* Button Styles */
+    .btn {
+        @apply inline-block px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer text-center no-underline;
+    }
+
+    .btn-primary {
+        @apply bg-[#bd93f9] text-[#f8f8f2] hover:bg-[#ff79c6] focus:ring-[#bd93f9];
+    }
+
+    .btn-secondary {
+        @apply inline-block px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer text-center no-underline bg-[#50fa7b] text-[#282a36] hover:bg-[#8be9fd] focus:ring-[#50fa7b];
+    }
+
+    .btn-outline {
+        @apply inline-block px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer text-center no-underline border-2 border-[#bd93f9] text-[#bd93f9] hover:bg-[#bd93f9] hover:text-[#282a36] focus:ring-[#bd93f9];
+    }
+
+    .card {
+        @apply bg-white rounded-lg shadow-lg p-6 border border-gray-200;
+    }
+
+    body.dark .card {
+        @apply bg-[#44475a] border-[#6272a4] text-[#f8f8f2];
+    }
+
+    .form-group {
+        @apply mb-4;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium mb-2 text-gray-700;
+    }
+
+    body.dark .form-label {
+        @apply text-[#f8f8f2];
+    }
+
+    .input,
+    textarea,
+    select {
+        @apply w-full px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#bd93f9] focus:border-transparent;
+    }
+
+    body.dark .input,
+    body.dark textarea,
+    body.dark select {
+        @apply border-[#44475a] bg-[#282a36] text-[#f8f8f2] placeholder-[#6272a4];
+    }
+
+    .alert {
+        @apply px-4 py-3 rounded-lg border-l-4;
+    }
+
+    .alert-success {
+        @apply bg-green-50 border-[#50fa7b] text-green-800;
+    }
+
+    body.dark .alert-success {
+        @apply bg-[#282a36] border-[#50fa7b] text-[#50fa7b];
+    }
+
+    .alert-error {
+        @apply bg-red-50 border-[#ff5555] text-red-800;
+    }
+
+    body.dark .alert-error {
+        @apply bg-[#282a36] border-[#ff5555] text-[#ff5555];
+    }
+
+    .alert-warning {
+        @apply bg-yellow-50 border-[#f1fa8c] text-yellow-800;
+    }
+
+    body.dark .alert-warning {
+        @apply bg-[#282a36] border-[#f1fa8c] text-[#f1fa8c];
+    }
+
+    .alert-info {
+        @apply bg-blue-50 border-[#8be9fd] text-blue-800;
+    }
+
+    body.dark .alert-info {
+        @apply bg-[#282a36] border-[#8be9fd] text-[#8be9fd];
+    }
+
+    .nav-link {
+        @apply px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-200 text-gray-700 no-underline;
+    }
+
+    body.dark .nav-link {
+        @apply hover:bg-[#282a36] text-[#f8f8f2];
+    }
+
+    .nav-link.active {
+        @apply bg-[#bd93f9] text-[#f8f8f2];
+    }
+
+    .table {
+        @apply w-full border-collapse;
+    }
+
+    .table th {
+        @apply bg-gray-100 text-gray-900 font-bold text-left px-4 py-3 border-b-2 border-[#bd93f9];
+    }
+
+    body.dark .table th {
+        @apply bg-[#44475a] text-[#f8f8f2] border-b-[#6272a4];
+    }
+
+    .table td {
+        @apply px-4 py-3 border-b border-gray-200;
+    }
+
+    body.dark .table td {
+        @apply border-b-[#6272a4];
+    }
+
+    .table tr:hover {
+        @apply bg-gray-50;
+    }
+
+    body.dark .table tr:hover {
+        @apply bg-[#44475a];
+    }
+
+    /* Dark Mode Toggle */
+    #darkModeToggle {
+        @apply relative inline-flex items-center justify-center;
+    }
+
+    body.dark #darkModeToggle {
+        @apply hover:bg-[#44475a];
+    }
+
+    #lightIcon,
+    #darkIcon {
+        @apply absolute w-6 h-6;
+    }
+
+    #lightIcon {
+        @apply opacity-100 transition-opacity duration-300;
+    }
+
+    #darkIcon {
+        @apply opacity-0 transition-opacity duration-300;
+    }
+
+    body.dark #lightIcon {
+        @apply opacity-0;
+    }
+
+    body.dark #darkIcon {
+        @apply opacity-100;
+    }
 }
