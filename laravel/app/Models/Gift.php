@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Gift extends Model
 {
@@ -11,7 +10,7 @@ class Gift extends Model
         'name',
         'expected_value',
         'spent_value',
-        'user_id'
+        'user_id',
     ];
 
     public function user()

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::withCount('gifts')->get();
+
         return view('users.index', compact('users'));
     }
 
@@ -21,11 +22,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         User::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
         return redirect()->route('users.index')->with('success', 'Pessoa criada com sucesso!');
@@ -34,6 +35,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return redirect()->route('users.index')->with('success', 'Utilizador apagado com sucesso!');
     }
 }
